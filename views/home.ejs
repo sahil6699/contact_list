@@ -1,20 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script
+      src="https://kit.fontawesome.com/102ee218ef.js"
+      crossorigin="anonymous"
+    ></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- our css file should be below all other styles so that we can overide the styles -->
+    <link rel="stylesheet" href="/css/home.css" />
     <title><%= locals.title%></title>
   </head>
   <body>
-    <h1>Rendered from Ejs</h1>
+    <h1 id="page-heading">
+      <i class="fas fa-paperclip"></i>
+      My Contacts List
+    </h1>
 
     <div>
       <ul>
         <% for (let i of contact_list) {%>
         <li>
           <p><%= i.name%></p>
-          <p><%= i.phone %></p>
+          <p style="margin-left: auto; margin-right: 4px; padding: 4px">
+            <%= i.phone %>
+          </p>
         </li>
         <% } %>
       </ul>
@@ -30,5 +41,6 @@
       />
       <button type="submit">Add contact</button>
     </form>
+    <script src="/js/home.js"></script>
   </body>
 </html>

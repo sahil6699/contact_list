@@ -1,3 +1,4 @@
+const bodyParser = require("body-parser");
 const { render } = require("ejs");
 const express = require("express");
 const path = require("path");
@@ -7,7 +8,24 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+//this is a middleware, we create middleware using the app.use
+//middleware is something which can read the resquest and response both and can  do some preprocessing
 app.use(express.urlencoded());
+app.use(express.static("assets"));
+
+//middleware 1
+app.use(function (req, res, next) {
+  req.myName = "sahil";
+  // console.log("middleware 1");
+  next();
+});
+
+//middleware 2
+app.use(function (req, res, next) {
+  console.log("my name from mw2", req.myName);
+  // console.log("middleware 2 called");
+  next();
+});
 
 let contactList = [
   {
@@ -25,6 +43,7 @@ let contactList = [
 ];
 
 app.get("/", function (req, res) {
+  console.log("my name from get", req.myName);
   // console.log(__dirname);
   // res.send("<h1>Cool it is running or is it!!</h1>");
   return res.render("home", {
@@ -42,9 +61,9 @@ app.post("/create-contact", function (req, res) {
   // });
 
   contactList.push(req.body);
-  console.log(req.body);
-  console.log(req.body.name);
-  console.log(req.body.phone);
+  // console.log(req.body);
+  // console.log(req.body.name);
+  // console.log(req.body.phone);
 
   return res.redirect("/");
 });

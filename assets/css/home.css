@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+#page-heading {
+  text-align: center;
+  margin-top: 25px;
+  color: grey;
+}
+
+div ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div ul li {
+  display: flex;
+  background-color: rgba(0, 0, 255, 0.236);
+  color: white;
+  width: 40vw;
+  border-bottom: 2px solid whitesmoke;
+  font-weight: bolder;
+}
+form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+form input {
+  margin: 2px;
+}
+
+div ul li:hover {
+  background-color: rgba(0, 0, 255, 0.5);
+}
